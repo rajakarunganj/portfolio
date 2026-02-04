@@ -221,8 +221,8 @@ export const Hero: React.FC = () => {
   whileHover={{ scale: 1.08, rotate: 2 }}
   transition={{ type: 'spring', stiffness: 300, damping: 15 }}
   sx={{
-    width: { xs: 260, sm: 300, md: 360, lg: 370 },
-    height: { xs: 260, sm: 300, md: 360, lg: 500 },
+    width: { xs: 230, sm: 300, md: 360, lg: 370 },
+    height: { xs: 360, sm: 300, md: 360, lg: 500 },
     objectFit: 'cover',
     boxShadow: '0 30px 70px rgba(0, 0, 0, 0.18)',
     borderRadius: '16px',
