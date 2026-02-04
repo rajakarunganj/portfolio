@@ -1,6 +1,6 @@
 import { Box, Container, Typography, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
-import { Linkedin, Mail, Download, MapPin, Instagram } from 'lucide-react';
+import { Linkedin, Mail, Download, MapPin, Instagram,Phone } from 'lucide-react';
 import { SectionTitle } from '../atoms/SectionTitle';
 import { CustomButton } from '../atoms/CustomButton';
 import { SocialLink } from '../molecules/SocialLink';
@@ -25,11 +25,6 @@ export const Contact: React.FC = () => {
         py: { xs: 8, md: 12 },
         position: 'relative',
         overflow: 'hidden',
-        background: `
-          radial-gradient(circle at 20% 20%, rgba(99,102,241,0.18), transparent 60%),
-          radial-gradient(circle at 80% 80%, rgba(56,189,248,0.22), transparent 60%),
-          linear-gradient(135deg, #f8fafc 0%, #eef7ff 100%)
-        `,
       }}
     >
       {/* GLOW TOP LEFT */}
@@ -104,6 +99,30 @@ export const Contact: React.FC = () => {
                   </Typography>
                   <Typography variant="body1" fontWeight={600}>
                     rajakarunganj@gmail.com
+                  </Typography>
+                </Box>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+                <Box
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '50%',
+                    backgroundColor: 'primary.light',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                  }}
+                >
+                  <Phone size={20} />
+                </Box>
+                <Box>
+                  <Typography variant="body2" color="text.secondary">
+                    Mobile
+                  </Typography>
+                  <Typography variant="body1" fontWeight={600}>
+                    8220782385
                   </Typography>
                 </Box>
               </Box>

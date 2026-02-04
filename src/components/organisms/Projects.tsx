@@ -11,12 +11,20 @@ const projects = [
     technologies: ['HTML', 'CSS', 'JavaScript', 'nestjs', 'postgress', 'typeOrm'],
   },
   {
-    title: 'RRT-Based V2V Communication System',
+    title: 'Edumee Mobile App & Web App',
     description:
-      'Implemented the Rapidly-exploring Random Tree (RRT) algorithm in Java to improve V2V communication using real-time location data. Focuses on enhanced route optimization and efficient data exchange for intelligent transportation systems.',
+     "Empower Your Learning Journey Be better than yesterday Explore this platform to become better than yesterday with expert mentors, authentic videos, and interactive quizzes.",
     image:
-      'https://images.pexels.com/photos/1637859/pexels-photo-1637859.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    technologies: ['Java', 'RRT Algorithm', 'Vehicle Networks'],
+      './images/skillAnalytics.png',
+    technologies: ['ReactNative', 'NestJs', 'NextJs','typescript','postgress', 'typeOrm'],
+  },
+  {
+    title: 'ShareMarket WebSite',
+    description:
+     "Plan for Education, weddings, vacations or buying a home or car.New Home/Car Goal Calculator – Plan for purchase of your new home or car.Special Vacation Goal Calculator – Plan for your special vacation expenses.Child Education Goal Calculator – Plan for your child’s education expenses.",
+    image:
+      './images/1234567.jpeg',
+    technologies: ['React', 'typescript','postgress', 'typeOrm'],
   },
 ];
 
@@ -28,11 +36,7 @@ export const Projects: React.FC = () => {
         py: { xs: 8, md: 12 },
         position: 'relative',
         overflow: 'hidden',
-        background: `
-          radial-gradient(circle at 20% 20%, rgba(99,102,241,0.18), transparent 60%),
-          radial-gradient(circle at 80% 80%, rgba(56,189,248,0.22), transparent 60%),
-          linear-gradient(135deg, #f8fafc 0%, #eef7ff 100%)
-        `,
+        
       }}
     >
       {/* GLOW TOP LEFT */}

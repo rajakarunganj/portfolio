@@ -26,11 +26,7 @@ export const Skills: React.FC = () => {
         py: { xs: 8, md: 12 },
         position: 'relative',
         overflow: 'hidden',
-        background: `
-          radial-gradient(circle at 20% 20%, rgba(99,102,241,0.18), transparent 60%),
-          radial-gradient(circle at 80% 80%, rgba(56,189,248,0.22), transparent 60%),
-          linear-gradient(135deg, #f8fafc 0%, #eef7ff 100%)
-        `,
+        
       }}
     >
       {/* GLOW TOP LEFT */}
