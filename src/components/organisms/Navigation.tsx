@@ -110,15 +110,6 @@ export const Navigation: React.FC = () => {
                   transition: "all 0.3s ease",
                 }}
               >
-                {/* <img
-                  src="./images/123.jpg"
-                  alt="Profile"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                /> */}
               </Box>
             </Box>
 

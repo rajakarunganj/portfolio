@@ -1,21 +1,40 @@
-import { Box, Container, Typography, Grid } from '@mui/material';
-import { motion } from 'framer-motion';
-import { Linkedin, Mail, Download, MapPin, Instagram,Phone } from 'lucide-react';
-import { SectionTitle } from '../atoms/SectionTitle';
-import { CustomButton } from '../atoms/CustomButton';
-import { SocialLink } from '../molecules/SocialLink';
+import { Box, Container, Typography, Grid } from "@mui/material";
+import { motion } from "framer-motion";
+import {
+  Linkedin,
+  Mail,
+  Download,
+  MapPin,
+  Instagram,
+  Phone,
+} from "lucide-react";
+import { SectionTitle } from "../atoms/SectionTitle";
+import { CustomButton } from "../atoms/CustomButton";
+import { SocialLink } from "../molecules/SocialLink";
 
 const MotionBox = motion(Box);
 
 const socialLinks = [
-  { icon: Linkedin, label: 'LinkedIn', url: 'https://www.linkedin.com/in/rajakarungan-j-a51335284/' },
-  { icon: Instagram, label: 'Instagram', url: 'https://www.instagram.com/im_raja_777_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' },
-  { icon: Mail, label: 'Email', url: 'mailto:rajakarunganj@gmail.com' },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    url: "https://www.linkedin.com/in/rajakarungan-j-a51335284/",
+  },
+  {
+    icon: Instagram,
+    label: "Instagram",
+    url: "https://www.instagram.com/im_raja_777_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    url: "https://mail.google.com/mail/?view=cm&fs=1&to=rajakarunganj@gmail.com",
+  },
 ];
 
 export const Contact: React.FC = () => {
   const handleDownloadResume = () => {
-    window.open('./images/Rajakarungan j Resume.pdf', '_blank');
+    window.open("./images/Rajakarungan j Resume.pdf", "_blank");
   };
 
   return (
@@ -23,20 +42,21 @@ export const Contact: React.FC = () => {
       id="contact"
       sx={{
         py: { xs: 8, md: 12 },
-        position: 'relative',
-        overflow: 'hidden',
+        position: "relative",
+        overflow: "hidden",
       }}
     >
       {/* GLOW TOP LEFT */}
       <Box
         sx={{
-          position: 'absolute',
+          position: "absolute",
           width: 350,
           height: 350,
-          background: 'radial-gradient(circle, rgba(59,130,246,0.35), transparent 70%)',
+          background:
+            "radial-gradient(circle, rgba(59,130,246,0.35), transparent 70%)",
           top: -120,
           left: -80,
-          filter: 'blur(120px)',
+          filter: "blur(120px)",
           opacity: 0.5,
           zIndex: 1,
         }}
@@ -45,19 +65,20 @@ export const Contact: React.FC = () => {
       {/* GLOW BOTTOM RIGHT */}
       <Box
         sx={{
-          position: 'absolute',
+          position: "absolute",
           width: 350,
           height: 350,
-          background: 'radial-gradient(circle, rgba(34,211,238,0.28), transparent 70%)',
+          background:
+            "radial-gradient(circle, rgba(34,211,238,0.28), transparent 70%)",
           bottom: -120,
           right: -90,
-          filter: 'blur(130px)',
+          filter: "blur(130px)",
           opacity: 0.45,
           zIndex: 1,
         }}
       />
 
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
+      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
         <SectionTitle subtitle="Feel free to reach out for collaborations or just a friendly hello">
           Get In Touch
         </SectionTitle>
@@ -74,21 +95,24 @@ export const Contact: React.FC = () => {
                 Let's Work Together
               </Typography>
               <Typography variant="body1" color="text.secondary" paragraph>
-                I'm always interested in hearing about new projects and opportunities.
-                Whether you have a question or just want to say hi, feel free to reach out!
+                I'm always interested in hearing about new projects and
+                opportunities. Whether you have a question or just want to say
+                hi, feel free to reach out!
               </Typography>
 
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+              <Box
+                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}
+              >
                 <Box
                   sx={{
                     width: 40,
                     height: 40,
-                    borderRadius: '50%',
-                    backgroundColor: 'primary.light',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
+                    borderRadius: "50%",
+                    backgroundColor: "primary.light",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "white",
                   }}
                 >
                   <Mail size={20} />
@@ -102,17 +126,19 @@ export const Contact: React.FC = () => {
                   </Typography>
                 </Box>
               </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+              <Box
+                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}
+              >
                 <Box
                   sx={{
                     width: 40,
                     height: 40,
-                    borderRadius: '50%',
-                    backgroundColor: 'primary.light',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
+                    borderRadius: "50%",
+                    backgroundColor: "primary.light",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "white",
                   }}
                 >
                   <Phone size={20} />
@@ -127,17 +153,19 @@ export const Contact: React.FC = () => {
                 </Box>
               </Box>
 
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 4 }}>
+              <Box
+                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 4 }}
+              >
                 <Box
                   sx={{
                     width: 40,
                     height: 40,
-                    borderRadius: '50%',
-                    backgroundColor: 'secondary.light',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
+                    borderRadius: "50%",
+                    backgroundColor: "secondary.light",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "white",
                   }}
                 >
                   <MapPin size={20} />
@@ -174,10 +202,10 @@ export const Contact: React.FC = () => {
               sx={{
                 p: 4,
                 borderRadius: 3,
-                backgroundColor: 'rgba(255,255,255,0.6)',
-                backdropFilter: 'blur(12px)',
+                backgroundColor: "rgba(255,255,255,0.6)",
+                backdropFilter: "blur(12px)",
                 boxShadow: 3,
-                textAlign: 'center',
+                textAlign: "center",
               }}
             >
               <Typography variant="h5" sx={{ mb: 3, fontWeight: 600 }}>
@@ -188,10 +216,10 @@ export const Contact: React.FC = () => {
               </Typography>
               <Box
                 sx={{
-                  display: 'flex',
+                  display: "flex",
                   gap: 2,
-                  justifyContent: 'center',
-                  flexWrap: 'wrap',
+                  justifyContent: "center",
+                  flexWrap: "wrap",
                 }}
               >
                 {socialLinks.map((link) => (
@@ -203,8 +231,8 @@ export const Contact: React.FC = () => {
                 sx={{
                   mt: 4,
                   pt: 4,
-                  borderTop: '1px solid',
-                  borderColor: 'divider',
+                  borderTop: "1px solid",
+                  borderColor: "divider",
                 }}
               >
                 <Typography variant="body2" color="text.secondary">
