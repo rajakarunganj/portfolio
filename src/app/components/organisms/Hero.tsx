@@ -72,7 +72,7 @@ export function Hero() {
             className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight"
           >
             Hi, I'm{" "}
-            <GradientText variant="blue-violet">Rajakarungan J</GradientText>
+            <GradientText variant="blue-violet">Rajakarungan</GradientText>
           </motion.h1>
 
           <motion.p
