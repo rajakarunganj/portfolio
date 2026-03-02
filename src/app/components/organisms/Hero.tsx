@@ -53,18 +53,6 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-center md:text-left"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md mb-6"
-          >
-            <div className="w-2 h-2 bg-[#059669] rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-gray-700">
-              Available for new projects
-            </span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -159,21 +147,6 @@ export function Hero() {
           <ProfileImage src="/images/Rajakarungan1.png" />
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="w-6 h-10 border-2 border-gray-300 rounded-full flex items-start justify-center p-2">
-          <motion.div
-            className="w-1 h-2 bg-gradient-to-b from-[#2563EB] to-[#7C3AED] rounded-full"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </div>
-      </motion.div>
     </section>
   );
 }
