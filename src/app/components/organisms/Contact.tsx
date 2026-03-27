@@ -1,47 +1,80 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
-import { GradientText } from '../atoms/GradientText';
-import { Input } from '../atoms/Input';
-import { Button } from '../atoms/Button';
+import React, { useState } from "react";
+import { motion } from "motion/react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { GradientText } from "../atoms/GradientText";
+import { Input } from "../atoms/Input";
+import { Button } from "../atoms/Button";
+import { toast } from "react-toastify";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! I will get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${API_URL}/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success(" Your message sent successfully!");
+
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        toast.error(data.message || "❌ Failed to send message");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("⚠️ Server error. Try again later");
+    }
+
+    setLoading(false);
   };
 
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'rajakarunganj@gmail.com',
-      color: '#2563EB',
- 
+      label: "Email",
+      value: "rajakarunganj@gmail.com",
+      color: "#2563EB",
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+91 8220782385',
-      href: 'tel:+918220782385',
-      color: '#059669'
+      label: "Phone",
+      value: "+91 8220782385",
+      href: "tel:+918220782385",
+      color: "#059669",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'Dindigul, TamilNadu, India',
-      href: '#',
-      color: '#7C3AED'
-    }
+      label: "Location",
+      value: "Dindigul, TamilNadu, India",
+      href: "#",
+      color: "#7C3AED",
+    },
   ];
 
   return (
@@ -66,7 +99,8 @@ export function Contact() {
             Get In <GradientText variant="emerald-teal">Touch</GradientText>
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-            Have a project in mind? Let's work together to create something amazing
+            Have a project in mind? Let's work together to create something
+            amazing
           </p>
         </motion.div>
 
@@ -79,10 +113,13 @@ export function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="px-2 sm:px-0"
           >
-            <h3 className="text-2xl sm:text-3xl font-semibold mb-6 text-gray-900">Let's Talk</h3>
+            <h3 className="text-2xl sm:text-3xl font-semibold mb-6 text-gray-900">
+              Let's Talk
+            </h3>
             <p className="text-gray-600 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
-              I'm always open to discussing new projects, creative ideas, or opportunities
-              to be part of your vision. Feel free to reach out through any of the channels below.
+              I'm always open to discussing new projects, creative ideas, or
+              opportunities to be part of your vision. Feel free to reach out
+              through any of the channels below.
             </p>
 
             <div className="space-y-4 sm:space-y-6">
@@ -101,11 +138,18 @@ export function Contact() {
                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"
                     style={{ backgroundColor: `${info.color}15` }}
                   >
-                    <info.icon className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: info.color }} />
+                    <info.icon
+                      className="w-4 h-4 sm:w-5 sm:h-5"
+                      style={{ color: info.color }}
+                    />
                   </div>
                   <div>
-                    <p className="text-xs sm:text-sm text-gray-500 mb-0.5">{info.label}</p>
-                    <p className="text-sm sm:text-base font-medium text-gray-900">{info.value}</p>
+                    <p className="text-xs sm:text-sm text-gray-500 mb-0.5">
+                      {info.label}
+                    </p>
+                    <p className="text-sm sm:text-base font-medium text-gray-900">
+                      {info.value}
+                    </p>
                   </div>
                 </motion.a>
               ))}
@@ -121,11 +165,13 @@ export function Contact() {
             >
               <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#059669] rounded-full animate-pulse" />
-                <h4 className="font-semibold text-sm sm:text-base text-gray-900">Currently Available</h4>
+                <h4 className="font-semibold text-sm sm:text-base text-gray-900">
+                  Currently Available
+                </h4>
               </div>
               <p className="text-xs sm:text-sm text-gray-600">
-                Open to freelance projects and full-time opportunities. 
-                Typical response time: within 24 hours.
+                Open to freelance projects and full-time opportunities. Typical
+                response time: within 24 hours.
               </p>
             </motion.div>
           </motion.div>
@@ -159,7 +205,9 @@ export function Contact() {
               <Input
                 label="Subject"
                 value={formData.subject}
-                onChange={(value) => setFormData({ ...formData, subject: value })}
+                onChange={(value) =>
+                  setFormData({ ...formData, subject: value })
+                }
                 placeholder="Project Inquiry"
                 required
               />
@@ -167,7 +215,9 @@ export function Contact() {
               <Input
                 label="Message"
                 value={formData.message}
-                onChange={(value) => setFormData({ ...formData, message: value })}
+                onChange={(value) =>
+                  setFormData({ ...formData, message: value })
+                }
                 placeholder="Tell me about your project..."
                 required
                 multiline
@@ -178,9 +228,20 @@ export function Contact() {
                 type="submit"
                 variant="primary"
                 size="lg"
-                className="w-full flex justify-center items-center"
+                className="w-full flex justify-center items-center gap-2"
+                disabled={loading}
               >
-                Send Message <Send className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+                {loading ? (
+                  <>
+                    <span className="animate-spin">⏳</span>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <Send className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+                  </>
+                )}
               </Button>
             </form>
           </motion.div>
