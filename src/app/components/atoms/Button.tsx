@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useCallback } from 'react';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -11,7 +10,7 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-export function Button({ 
+const ButtonComponent = ({ 
   children, 
   variant = 'primary', 
   size = 'md', 
@@ -19,13 +18,13 @@ export function Button({
   onClick,
   type = 'button',
   disabled = false
-}: ButtonProps) {
+}: ButtonProps) => {
   const baseStyles = "rounded-full font-medium transition-all duration-300 inline-flex items-center justify-center";
   
   const variants = {
-    primary: "bg-gradient-to-r from-[#2563EB] to-[#7C3AED] text-white shadow-lg hover:shadow-xl",
-    secondary: "bg-white text-[#2563EB] shadow-md hover:shadow-lg border border-gray-200",
-    outline: "border-2 border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB]/5"
+    primary: "bg-gradient-to-r from-[#2563EB] to-[#7C3AED] text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-98",
+    secondary: "bg-white text-[#2563EB] shadow-md hover:shadow-lg border border-gray-200 hover:scale-105 active:scale-98",
+    outline: "border-2 border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB]/5 hover:scale-105 active:scale-98"
   };
   
   const sizes = {
@@ -34,17 +33,20 @@ export function Button({
     lg: "px-10 py-4 text-lg"
   };
 
+  const handleClick = useCallback(() => {
+    onClick?.();
+  }, [onClick]);
+
   return (
-    <motion.button
+    <button
       type={type}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
-      whileHover={{ scale: 1.05, y: -2 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
       {children}
-    </motion.button>
+    </button>
   );
-}
+};
+
+export const Button = React.memo(ButtonComponent);

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'motion/react';
 
 interface FloatingShapeProps {
   color: string;
@@ -12,16 +11,14 @@ interface FloatingShapeProps {
   duration?: number;
 }
 
-export function FloatingShape({ 
+const FloatingShapeComponent = ({ 
   color, 
   size, 
   top, 
   left, 
   right, 
-  bottom, 
-  delay = 0,
-  duration = 20 
-}: FloatingShapeProps) {
+  bottom
+}: FloatingShapeProps) => {
   const position: React.CSSProperties = {
     top,
     left,
@@ -29,8 +26,9 @@ export function FloatingShape({
     bottom,
   };
 
+  // Static gradient shapes for better performance - no animation
   return (
-    <motion.div
+    <div
       className="absolute rounded-full opacity-20 blur-3xl pointer-events-none"
       style={{
         ...position,
@@ -38,17 +36,8 @@ export function FloatingShape({
         height: size,
         background: color,
       }}
-      animate={{
-        x: [0, 30, 0, -30, 0],
-        y: [0, -40, 0, 40, 0],
-        scale: [1, 1.1, 1, 0.9, 1],
-      }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        delay,
-        ease: "easeInOut",
-      }}
     />
   );
-}
+};
+
+export const FloatingShape = React.memo(FloatingShapeComponent);

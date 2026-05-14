@@ -6,7 +6,7 @@ interface BadgeProps {
   className?: string;
 }
 
-export function Badge({ children, color = 'blue', className = '' }: BadgeProps) {
+const BadgeComponent = ({ children, color = 'blue', className = '' }: BadgeProps) => {
   const colors = {
     blue: 'bg-blue-50 text-[#2563EB] border-blue-100',
     emerald: 'bg-emerald-50 text-[#059669] border-emerald-100',
@@ -20,4 +20,6 @@ export function Badge({ children, color = 'blue', className = '' }: BadgeProps) 
       {children}
     </span>
   );
-}
+};
+
+export const Badge = React.memo(BadgeComponent);

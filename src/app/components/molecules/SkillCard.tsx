@@ -10,15 +10,14 @@ interface SkillCardProps {
   delay?: number;
 }
 
-export function SkillCard({ icon: Icon, title, description, gradient, delay = 0 }: SkillCardProps) {
+const SkillCardComponent = ({ icon: Icon, title, description, gradient, delay = 0 }: SkillCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative"
+      className="group relative hover:-translate-y-2 transition-transform duration-300"
     >
       <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl blur-xl"
            style={{ background: gradient }} />
@@ -36,4 +35,6 @@ export function SkillCard({ icon: Icon, title, description, gradient, delay = 0 
       </div>
     </motion.div>
   );
-}
+};
+
+export const SkillCard = React.memo(SkillCardComponent);

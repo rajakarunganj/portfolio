@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion } from 'motion/react';
 import { ExternalLink, Github } from 'lucide-react';
 import { Badge } from '../atoms/Badge';
@@ -13,7 +13,7 @@ interface ProjectCardProps {
   delay?: number;
 }
 
-export function ProjectCard({ 
+const ProjectCardComponent = ({ 
   title, 
   description, 
   image, 
@@ -21,8 +21,11 @@ export function ProjectCard({
   liveUrl, 
   githubUrl,
   delay = 0 
-}: ProjectCardProps) {
+}: ProjectCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleHoverStart = useCallback(() => setIsHovered(true), []);
+  const handleHoverEnd = useCallback(() => setIsHovered(false), []);
 
   return (
     <motion.div
@@ -30,19 +33,17 @@ export function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      whileHover={{ y: -8 }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+      className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+      onHoverStart={handleHoverStart}
+      onHoverEnd={handleHoverEnd}
     >
       {/* Image Container */}
       <div className="relative h-56 overflow-hidden bg-gray-100">
         <motion.img
           src={image}
           alt={title}
-          className="w-full h-full object-cover"
-          animate={{ scale: isHovered ? 1.1 : 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="w-full h-full object-cover transition-transform duration-500"
+          style={{ transform: isHovered ? 'scale(1.05)' : 'scale(1)' }}
         />
         
         {/* Overlay */}
@@ -95,4 +96,6 @@ export function ProjectCard({
       </div>
     </motion.div>
   );
-}
+};
+
+export const ProjectCard = React.memo(ProjectCardComponent);

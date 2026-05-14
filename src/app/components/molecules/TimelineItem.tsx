@@ -10,14 +10,14 @@ interface TimelineItemProps {
   delay?: number;
 }
 
-export function TimelineItem({ 
+const TimelineItemComponent = ({ 
   year, 
   title, 
   company, 
   description, 
   color,
   delay = 0 
-}: TimelineItemProps) {
+}: TimelineItemProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, x: -30 }}
@@ -30,11 +30,9 @@ export function TimelineItem({
       <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-gray-200 to-transparent" />
       
       {/* Timeline Dot */}
-      <motion.div
-        className="absolute left-[-7px] top-1 w-4 h-4 rounded-full border-2 border-white shadow-lg"
+      <div
+        className="absolute left-[-7px] top-1 w-4 h-4 rounded-full border-2 border-white shadow-lg hover:scale-130 transition-transform duration-300"
         style={{ backgroundColor: color }}
-        whileHover={{ scale: 1.3 }}
-        transition={{ type: "spring", stiffness: 400, damping: 10 }}
       />
 
       {/* Content */}
@@ -54,4 +52,6 @@ export function TimelineItem({
       </div>
     </motion.div>
   );
-}
+};
+
+export const TimelineItem = React.memo(TimelineItemComponent);

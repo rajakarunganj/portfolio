@@ -6,7 +6,7 @@ interface ProfileImageProps {
   alt?: string;
 }
 
-export function ProfileImage({ src, alt = "Profile" }: ProfileImageProps) {
+const ProfileImageComponent = ({ src, alt = "Profile" }: ProfileImageProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
@@ -14,14 +14,12 @@ export function ProfileImage({ src, alt = "Profile" }: ProfileImageProps) {
       transition={{ duration: 0.6, delay: 0.3 }}
       className="relative"
     >
-      {/* Glow Effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB] via-[#7C3AED] to-[#059669] rounded-full blur-2xl opacity-30 animate-pulse" />
+      {/* Glow Effect - Static */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB] via-[#7C3AED] to-[#059669] rounded-full blur-2xl opacity-20" />
       
       {/* Image Container */}
-      <motion.div
-        className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl"
-        whileHover={{ scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      <div
+        className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl hover:scale-105 transition-transform duration-300"
       >
         <img
           src={src}
@@ -30,27 +28,15 @@ export function ProfileImage({ src, alt = "Profile" }: ProfileImageProps) {
         />
         
         {/* Gradient Overlay on Hover */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-[#2563EB]/20 to-[#7C3AED]/20"
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        />
-      </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB]/0 to-[#7C3AED]/0 hover:from-[#2563EB]/20 hover:to-[#7C3AED]/20 transition-all duration-300" />
+      </div>
 
-      {/* Floating Ring */}
-      <motion.div
-        className="absolute inset-0 rounded-full border-2 border-[#2563EB]/30"
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.3, 0.6, 0.3],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+      {/* Floating Ring - Removed infinite animation for better performance */}
+      <div
+        className="absolute inset-0 rounded-full border-2 border-[#2563EB]/20"
       />
     </motion.div>
   );
-}
+};
+
+export const ProfileImage = React.memo(ProfileImageComponent);

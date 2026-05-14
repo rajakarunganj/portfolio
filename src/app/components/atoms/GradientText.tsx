@@ -6,7 +6,7 @@ interface GradientTextProps {
   variant?: 'blue-violet' | 'emerald-teal' | 'rainbow';
 }
 
-export function GradientText({ children, className = '', variant = 'blue-violet' }: GradientTextProps) {
+const GradientTextComponent = ({ children, className = '', variant = 'blue-violet' }: GradientTextProps) => {
   const gradients = {
     'blue-violet': 'bg-gradient-to-r from-[#2563EB] to-[#7C3AED]',
     'emerald-teal': 'bg-gradient-to-r from-[#059669] to-[#06B6D4]',
@@ -18,4 +18,6 @@ export function GradientText({ children, className = '', variant = 'blue-violet'
       {children}
     </span>
   );
-}
+};
+
+export const GradientText = React.memo(GradientTextComponent);
