@@ -6,6 +6,7 @@ import { Hero } from '../organisms/Hero';
 import { About } from '../organisms/About';
 import { Skills } from '../organisms/Skills';
 import { Projects } from '../organisms/Projects';
+import { Certificates } from '../organisms/Certificates';
 import { Experience } from '../organisms/Experience';
 import { Contact } from '../organisms/Contact';
 import { Footer } from '../organisms/Footer';
@@ -21,6 +22,7 @@ export function PortfolioTemplate() {
         <About />
         <Skills />
         <Projects />
+        <Certificates />
         <Experience />
         <Contact />
       </main>
