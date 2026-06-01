@@ -71,7 +71,7 @@ export function Contact() {
     {
       icon: MapPin,
       label: "Location",
-      value: "Dindigul, TamilNadu, India",
+      value: "Chennai, TamilNadu, India",
       href: "#",
       color: "#7C3AED",
     },
