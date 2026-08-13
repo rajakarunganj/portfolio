@@ -166,7 +166,7 @@ export function Hero() {
             className="flex gap-4 justify-center md:justify-start"
           >
             <a
-              href="https://github.com"
+              href="https://github.com/rajakarunganj"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -175,7 +175,7 @@ export function Hero() {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/rajakarungan-j-a51335284/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -184,7 +184,7 @@ export function Hero() {
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="mailto:hello@example.com"
+              href="mailto:rajakarunganj@gmail.com"
               aria-label="Email"
               className="w-12 h-12 bg-card border border-border rounded-full flex items-center justify-center text-foreground/80 hover:text-primary hover:border-primary/40 shadow-md hover:shadow-glow transition-all duration-300 hover:scale-110"
             >
