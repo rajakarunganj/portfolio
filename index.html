@@ -7,6 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rajakarungan j Portfolio</title>
   <meta name="description" content="Professional portfolio of Rajakarungan j - Full Stack Developer " />
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('portfolio-theme');
+        var isDark = stored ? stored === 'dark' : !window.matchMedia('(prefers-color-scheme: light)').matches;
+        if (isDark) document.documentElement.classList.add('dark');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body>

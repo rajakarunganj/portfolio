@@ -1,14 +1,42 @@
 import React, { useState } from "react";
-import { motion } from "motion/react";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { Mail, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
 import { GradientText } from "../atoms/GradientText";
+import { HudLabel } from "../atoms/HudLabel";
 import { Input } from "../atoms/Input";
 import { Button } from "../atoms/Button";
 import { toast } from "react-toastify";
+import { sendContact } from "../../common/env.common";
+import { useParallax } from "../../hooks/useParallax";
 
-const API_URL = import.meta.env.VITE_API_URL;
+type Status = "idle" | "loading" | "success";
+
+const contactInfo = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "rajakarunganj@gmail.com",
+    href: "mailto:rajakarunganj@gmail.com",
+    colorVar: "var(--primary)",
+  },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "+91 8220782385",
+    href: "tel:+918220782385",
+    colorVar: "var(--accent)",
+  },
+  {
+    icon: MapPin,
+    label: "Location",
+    value: "Chennai, Tamil Nadu, India",
+    href: undefined,
+    colorVar: "var(--gold)",
+  },
+];
 
 export function Contact() {
+  const parallax = useParallax<HTMLElement>(50);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,75 +44,36 @@ export function Contact() {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    setLoading(true);
+    setStatus("loading");
 
     try {
-      const res = await fetch(`${API_URL}/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        toast.success(" Your message sent successfully!");
-
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-      } else {
-        toast.error(data.message || "❌ Failed to send message");
-      }
+      await sendContact(formData);
+      toast.success("Your message sent successfully!");
+      setStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      window.setTimeout(() => setStatus("idle"), 2200);
     } catch (error) {
       console.error(error);
-      toast.error("⚠️ Server error. Try again later");
+      toast.error("Server error. Try again later");
+      setStatus("idle");
     }
-
-    setLoading(false);
   };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "rajakarunganj@gmail.com",
-      color: "#2563EB",
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+91 8220782385",
-      href: "tel:+918220782385",
-      color: "#059669",
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "Chennai, TamilNadu, India",
-      href: "#",
-      color: "#7C3AED",
-    },
-  ];
 
   return (
     <section
+      ref={parallax.ref}
       id="contact"
-      className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 bg-gradient-to-br from-[#F8F9FB] to-white relative overflow-hidden"
+      className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 bg-secondary/30 relative overflow-hidden"
     >
       {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-[#2563EB]/10 to-transparent rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-br from-[#7C3AED]/10 to-transparent rounded-full blur-3xl" />
+      <motion.div className="absolute inset-0" style={{ y: parallax.y }} aria-hidden="true">
+        <div className="absolute top-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-accent/10 rounded-full blur-3xl" />
+      </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
@@ -95,10 +84,13 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16"
         >
+          <HudLabel index="07" align="center" className="mb-4">
+            Get In Touch
+          </HudLabel>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Get In <GradientText variant="emerald-teal">Touch</GradientText>
+            Let's Build Something <GradientText variant="emerald-teal">Amazing</GradientText>
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
             Have a project in mind? Let's work together to create something
             amazing
           </p>
@@ -113,10 +105,10 @@ export function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="px-2 sm:px-0"
           >
-            <h3 className="text-2xl sm:text-3xl font-semibold mb-6 text-gray-900">
+            <h3 className="text-2xl sm:text-3xl font-semibold mb-6 text-foreground font-display">
               Let's Talk
             </h3>
-            <p className="text-gray-600 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
+            <p className="text-muted-foreground mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
               I'm always open to discussing new projects, creative ideas, or
               opportunities to be part of your vision. Feel free to reach out
               through any of the channels below.
@@ -127,7 +119,7 @@ export function Contact() {
                 <motion.a
                   key={index}
                   href={info.href}
-                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-2xl shadow-sm sm:shadow-md hover:shadow-lg transition-all duration-300 group"
+                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-card border border-border rounded-2xl shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 group"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -136,18 +128,18 @@ export function Contact() {
                 >
                   <div
                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"
-                    style={{ backgroundColor: `${info.color}15` }}
+                    style={{ backgroundColor: `color-mix(in srgb, ${info.colorVar} 15%, transparent)` }}
                   >
                     <info.icon
                       className="w-4 h-4 sm:w-5 sm:h-5"
-                      style={{ color: info.color }}
+                      style={{ color: info.colorVar }}
                     />
                   </div>
                   <div>
-                    <p className="text-xs sm:text-sm text-gray-500 mb-0.5">
+                    <p className="text-xs sm:text-sm text-muted-foreground mb-0.5">
                       {info.label}
                     </p>
-                    <p className="text-sm sm:text-base font-medium text-gray-900">
+                    <p className="text-sm sm:text-base font-medium text-foreground">
                       {info.value}
                     </p>
                   </div>
@@ -161,15 +153,15 @@ export function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-6 sm:mt-8 p-4 sm:p-6 bg-gradient-to-br from-[#2563EB]/5 to-[#7C3AED]/5 rounded-2xl border border-[#2563EB]/10"
+              className="mt-6 sm:mt-8 p-4 sm:p-6 bg-primary/5 rounded-2xl border border-primary/15"
             >
               <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#059669] rounded-full animate-pulse" />
-                <h4 className="font-semibold text-sm sm:text-base text-gray-900">
+                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-emerald-500 rounded-full animate-pulse-glow" />
+                <h4 className="font-semibold text-sm sm:text-base text-foreground">
                   Currently Available
                 </h4>
               </div>
-              <p className="text-xs sm:text-sm text-gray-600">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Open to freelance projects and full-time opportunities. Typical
                 response time: within 24 hours.
               </p>
@@ -182,9 +174,13 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="px-2 sm:px-0"
+            className="relative px-2 sm:px-0"
           >
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <div
+              className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-primary/10 via-transparent to-accent/10 blur-2xl hidden sm:block"
+              aria-hidden="true"
+            />
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 relative">
               <Input
                 label="Your Name"
                 value={formData.name}
@@ -221,7 +217,7 @@ export function Contact() {
                 placeholder="Tell me about your project..."
                 required
                 multiline
-                rows={4} // fewer rows for mobile
+                rows={4}
               />
 
               <Button
@@ -229,19 +225,44 @@ export function Contact() {
                 variant="primary"
                 size="lg"
                 className="w-full flex justify-center items-center gap-2"
-                disabled={loading}
+                disabled={status !== "idle"}
               >
-                {loading ? (
-                  <>
-                    <span className="animate-spin">⏳</span>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    Send Message
-                    <Send className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-                  </>
-                )}
+                <AnimatePresence mode="wait" initial={false}>
+                  {status === "success" ? (
+                    <motion.span
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.7 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.7 }}
+                      className="flex items-center gap-2"
+                    >
+                      <CheckCircle2 className="w-5 h-5" />
+                      Message Sent
+                    </motion.span>
+                  ) : status === "loading" ? (
+                    <motion.span
+                      key="loading"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="flex items-center gap-2"
+                    >
+                      <span className="w-4 h-4 rounded-full border-2 border-primary-foreground/40 border-t-primary-foreground animate-spin" />
+                      Sending...
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      key="idle"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="flex items-center gap-2"
+                    >
+                      Send Message
+                      <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </Button>
             </form>
           </motion.div>

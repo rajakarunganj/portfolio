@@ -3,64 +3,119 @@ import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { GradientText } from "../atoms/GradientText";
 import { Button } from "../atoms/Button";
 import { FloatingShape } from "../atoms/FloatingShape";
+import { HudLabel } from "../atoms/HudLabel";
+import { StatusTick } from "../atoms/HudChrome";
 import { ProfileImage } from "../molecules/ProfileImage";
+import { useMagnetic } from "../../hooks/useMagnetic";
+import { useParallax } from "../../hooks/useParallax";
+
+const NAME = "Rajakarungan J";
+
+function MagneticButton({
+  children,
+  ...props
+}: React.ComponentProps<typeof Button>) {
+  const magnetic = useMagnetic();
+  return (
+    <span
+      ref={magnetic.ref as React.RefObject<HTMLSpanElement>}
+      onPointerMove={magnetic.onPointerMove}
+      onPointerLeave={magnetic.onPointerLeave}
+      style={magnetic.style}
+      className="inline-block"
+    >
+      <Button {...props}>{children}</Button>
+    </span>
+  );
+}
 
 export function Hero() {
+  const parallax = useParallax<HTMLElement>(70);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#F8F9FB] to-[#FFFFFF] px-6 py-20">
-      {/* Floating Background Shapes */}
-      <FloatingShape
-        color="linear-gradient(135deg, #2563EB, #7C3AED)"
-        size={400}
-        top="10%"
-        left="5%"
-        delay={0}
-      />
-      <FloatingShape
-        color="linear-gradient(135deg, #059669, #06B6D4)"
-        size={350}
-        top="60%"
-        right="10%"
-        delay={1}
-      />
-      <FloatingShape
-        color="linear-gradient(135deg, #FF6B6B, #C6A75E)"
-        size={300}
-        bottom="10%"
-        left="15%"
-        delay={2}
-      />
+    <section
+      ref={parallax.ref}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 py-28 sm:py-20"
+    >
+      {/* Cinematic background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-secondary/40" />
 
+      <motion.div className="absolute inset-0" style={{ y: parallax.y }} aria-hidden="true">
+        <FloatingShape
+          color="linear-gradient(135deg, var(--primary), var(--primary-dark))"
+          size={420}
+          top="8%"
+          left="2%"
+          delay={0}
+          duration={7}
+        />
+        <FloatingShape
+          color="linear-gradient(135deg, var(--accent), var(--primary-dark))"
+          size={340}
+          top="55%"
+          right="4%"
+          delay={1.2}
+          duration={8}
+        />
+        <FloatingShape
+          color="linear-gradient(135deg, var(--gold), var(--primary))"
+          size={260}
+          bottom="6%"
+          left="18%"
+          delay={2}
+          duration={9}
+        />
+      </motion.div>
 
-
-      <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-[1.15fr_0.85fr] gap-16 items-center">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
           className="text-center md:text-left"
         >
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex md:justify-start justify-center mb-5"
           >
-            Hi, I'm{" "}
-            <GradientText variant="blue-violet">Rajakarungan J</GradientText>
-          </motion.h1>
+            <HudLabel index="01">Welcome</HudLabel>
+          </motion.div>
+
+          <h1
+            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            aria-label={`I'm ${NAME}`}
+          >
+            <span aria-hidden="true">
+              I'm{" "}
+              <GradientText variant="blue-violet">
+                {NAME.split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    className="inline-block"
+                    initial={{ opacity: 0, y: 24, rotateX: -60 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 + i * 0.035 }}
+                  >
+                    {char === " " ? " " : char}
+                  </motion.span>
+                ))}
+              </GradientText>
+            </span>
+          </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-4"
+            transition={{ duration: 0.6, delay: 1.1 }}
+            className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-4 font-display"
           >
             Full-Stack Developer
           </motion.p>
@@ -68,8 +123,8 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="text-base sm:text-lg text-gray-500 mb-8 max-w-xl mx-auto md:mx-0"
+            transition={{ duration: 0.6, delay: 1.2 }}
+            className="text-base sm:text-lg text-muted-foreground mb-8 max-w-xl mx-auto md:mx-0"
           >
             I am looking for an opportunity to use my skills and abilities to
             make a positive impact on an IT organisation. I am committed to
@@ -79,17 +134,17 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.6, delay: 1.3 }}
             className="flex flex-wrap gap-4 justify-center md:justify-start mb-8"
           >
-            <Button
+            <MagneticButton
               variant="primary"
               size="lg"
               onClick={() => scrollToSection("projects")}
             >
               View My Work <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button
+            </MagneticButton>
+            <MagneticButton
               variant="secondary"
               size="lg"
               onClick={() => {
@@ -100,21 +155,22 @@ export function Hero() {
               }}
             >
               Download Resume
-            </Button>
+            </MagneticButton>
           </motion.div>
 
           {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
+            transition={{ duration: 0.6, delay: 1.4 }}
             className="flex gap-4 justify-center md:justify-start"
           >
             <a
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-700 hover:text-[#2563EB] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110"
+              aria-label="GitHub"
+              className="w-12 h-12 bg-card border border-border rounded-full flex items-center justify-center text-foreground/80 hover:text-primary hover:border-primary/40 shadow-md hover:shadow-glow transition-all duration-300 hover:scale-110"
             >
               <Github className="w-5 h-5" />
             </a>
@@ -122,13 +178,15 @@ export function Hero() {
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-700 hover:text-[#2563EB] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110"
+              aria-label="LinkedIn"
+              className="w-12 h-12 bg-card border border-border rounded-full flex items-center justify-center text-foreground/80 hover:text-primary hover:border-primary/40 shadow-md hover:shadow-glow transition-all duration-300 hover:scale-110"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <a
               href="mailto:hello@example.com"
-              className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gray-700 hover:text-[#2563EB] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110"
+              aria-label="Email"
+              className="w-12 h-12 bg-card border border-border rounded-full flex items-center justify-center text-foreground/80 hover:text-primary hover:border-primary/40 shadow-md hover:shadow-glow transition-all duration-300 hover:scale-110"
             >
               <Mail className="w-5 h-5" />
             </a>
@@ -136,10 +194,37 @@ export function Hero() {
         </motion.div>
 
         {/* Right Content - Profile Image */}
-        <div className="flex justify-center md:justify-end ">
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex flex-col items-center md:items-end gap-6"
+        >
           <ProfileImage src="/images/Rajakarungan1.png" />
-        </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.5 }}
+            className="w-full max-w-[260px] rounded-2xl border border-glass-border bg-glass-bg backdrop-blur-md px-4 py-3 space-y-2"
+          >
+            <StatusTick label="Status — Available" />
+            <StatusTick label="Role — Full-Stack Dev" />
+            <StatusTick label="Base — Chennai, IN" />
+          </motion.div>
+        </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1.6 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-hud-text motion-reduce:hidden"
+        aria-hidden="true"
+      >
+        <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
+        <span className="w-px h-8 bg-gradient-to-b from-primary to-transparent" />
+      </motion.div>
     </section>
   );
 }

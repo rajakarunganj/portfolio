@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUp } from 'lucide-react';
 
@@ -35,7 +35,7 @@ export function BackToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-[#2563EB] to-[#7C3AED] text-white rounded-full shadow-2xl flex items-center justify-center hover:shadow-3xl transition-shadow"
+          className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary to-primary-dark text-primary-foreground rounded-full shadow-2xl flex items-center justify-center hover:shadow-glow transition-shadow border border-white/10"
           aria-label="Back to top"
         >
           <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6" />

@@ -1,167 +1,105 @@
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  /* Premium Luxury Color Palette */
+  /* Spider-Man-inspired premium palette — light mode (own design, not an inversion) */
   --font-size: 16px;
-  --background: #F8F9FB;
-  --foreground: #1F2937;
+  --background: #FAFAF8;
+  --foreground: #18181B;
   --card: #FFFFFF;
-  --card-foreground: #1F2937;
+  --card-foreground: #18181B;
   --popover: #FFFFFF;
-  --popover-foreground: #1F2937;
-  
-  /* Colorful Accent System */
-  --primary: #2563EB;
+  --popover-foreground: #18181B;
+
+  --primary: #C81D3A;
+  --primary-dark: #8F1226;
   --primary-foreground: #FFFFFF;
-  --secondary: #F8F9FB;
-  --secondary-foreground: #1F2937;
-  --muted: #E5E7EB;
-  --muted-foreground: #6B7280;
-  
-  /* Premium Accent Colors */
-  --royal-blue: #2563EB;
-  --emerald-green: #059669;
-  --soft-violet: #7C3AED;
-  --coral: #FF6B6B;
-  --champagne-gold: #C6A75E;
-  
-  /* Gradient Stops */
-  --gradient-blue-violet-start: #2563EB;
-  --gradient-blue-violet-end: #7C3AED;
-  --gradient-emerald-teal-start: #059669;
-  --gradient-emerald-teal-end: #06B6D4;
-  
-  --accent: #E5E7EB;
-  --accent-foreground: #1F2937;
-  --destructive: #EF4444;
+  --secondary: #F5F4F1;
+  --secondary-foreground: #18181B;
+  --muted: #F1EFEA;
+  --muted-foreground: #6B6B70;
+
+  --accent: #2D4A63;
+  --accent-foreground: #FFFFFF;
+  --gold: #A9791F;
+  --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
-  --border: rgba(0, 0, 0, 0.08);
+
+  --border: rgba(24, 24, 27, 0.08);
   --input: transparent;
   --input-background: #FFFFFF;
-  --switch-background: #E5E7EB;
+  --ring: #C81D3A;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #2563EB;
-  --chart-1: #2563EB;
-  --chart-2: #059669;
-  --chart-3: #7C3AED;
-  --chart-4: #FF6B6B;
-  --chart-5: #C6A75E;
   --radius: 0.875rem;
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #1F2937;
-  --sidebar-primary: #2563EB;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F8F9FB;
-  --sidebar-accent-foreground: #1F2937;
-  --sidebar-border: rgba(0, 0, 0, 0.08);
-  --sidebar-ring: #2563EB;
-  
-  /* Premium Shadow System */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.03);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.06), 0 4px 6px -4px rgb(0 0 0 / 0.06);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.08);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.12);
-  
-  /* Glass Effect */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.18);
+
+  /* Web-line / HUD system */
+  --web-line: rgba(200, 29, 58, 0.14);
+  --web-line-strong: rgba(200, 29, 58, 0.28);
+  --spider-glow: rgba(200, 29, 58, 0.20);
+  --hud-text: rgba(24, 24, 27, 0.45);
+  --vignette: rgba(24, 20, 20, 0.10);
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.06), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.09), 0 8px 10px -6px rgb(0 0 0 / 0.09);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.14);
+
+  --glass-bg: rgba(255, 255, 255, 0.66);
+  --glass-border: rgba(24, 24, 27, 0.07);
 }
 
 .dark {
-  --background: #0F172A;
-  --foreground: #F1F5F9;
-  --card: #1E293B;
-  --card-foreground: #F1F5F9;
-  --popover: #1E293B;
-  --popover-foreground: #F1F5F9;
-  --primary: #3B82F6;
-  --primary-foreground: #F1F5F9;
-  --secondary: #1E293B;
-  --secondary-foreground: #F1F5F9;
-  --muted: #334155;
-  --muted-foreground: #94A3B8;
-  --accent: #334155;
-  --accent-foreground: #F1F5F9;
-  --destructive: #EF4444;
-  --destructive-foreground: #F1F5F9;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.05);
-  --ring: #3B82F6;
-  --font-weight-medium: 500;
-  --font-weight-normal: 400;
-  --chart-1: #3B82F6;
-  --chart-2: #10B981;
-  --chart-3: #8B5CF6;
-  --chart-4: #F59E0B;
-  --chart-5: #EF4444;
-  --sidebar: #1E293B;
-  --sidebar-foreground: #F1F5F9;
-  --sidebar-primary: #3B82F6;
-  --sidebar-primary-foreground: #F1F5F9;
-  --sidebar-accent: #334155;
-  --sidebar-accent-foreground: #F1F5F9;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #3B82F6;
-}
+  /* Spider-Man-inspired premium palette — dark mode (primary cinematic experience) */
+  --background: #0A0A0C;
+  --foreground: #F4F4F3;
+  --card: #151417;
+  --card-foreground: #F4F4F3;
+  --popover: #151417;
+  --popover-foreground: #F4F4F3;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-input-background: var(--input-background);
-  --color-switch-background: var(--switch-background);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-  
-  /* Premium Color Classes */
-  --color-royal-blue: var(--royal-blue);
-  --color-emerald-green: var(--emerald-green);
-  --color-soft-violet: var(--soft-violet);
-  --color-coral: var(--coral);
-  --color-champagne-gold: var(--champagne-gold);
+  --primary: #E11D2E;
+  --primary-dark: #9B111E;
+  --primary-foreground: #FFFFFF;
+  --secondary: #1B1A1E;
+  --secondary-foreground: #F4F4F3;
+  --muted: #202024;
+  --muted-foreground: #9C9CA3;
+
+  --accent: #4C6B8A;
+  --accent-foreground: #F4F4F3;
+  --gold: #C9A227;
+  --destructive: #EF4444;
+  --destructive-foreground: #F4F4F3;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.05);
+  --ring: #E11D2E;
+
+  --web-line: rgba(225, 29, 46, 0.22);
+  --web-line-strong: rgba(225, 29, 46, 0.4);
+  --spider-glow: rgba(225, 29, 46, 0.35);
+  --hud-text: rgba(244, 244, 243, 0.4);
+  --vignette: rgba(0, 0, 0, 0.55);
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.45), 0 4px 6px -4px rgb(0 0 0 / 0.45);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.6);
+
+  --glass-bg: rgba(21, 20, 23, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   html {
@@ -169,33 +107,44 @@
     scroll-behavior: smooth;
   }
 
-  /* Custom Scrollbar */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   ::-webkit-scrollbar {
     width: 12px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #F8F9FB;
+    background: var(--background);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #2563EB, #7C3AED);
+    background: linear-gradient(180deg, var(--primary), var(--primary-dark));
     border-radius: 6px;
-    border: 2px solid #F8F9FB;
+    border: 2px solid var(--background);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #1d4ed8, #6d28d9);
+    background: linear-gradient(180deg, var(--primary-dark), var(--primary-dark));
   }
 
-  /* Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: #2563EB #F8F9FB;
+    scrollbar-color: var(--primary) var(--background);
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', 'Playfair Display', serif;
+    color: var(--foreground);
   }
 
   h1 {
@@ -248,5 +197,10 @@
     font-weight: 400;
     line-height: 1.75;
     color: var(--muted-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
   }
 }

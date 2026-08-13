@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'motion/react';
 
 interface InputProps {
@@ -25,11 +25,11 @@ export function Input({
   const [isFocused, setIsFocused] = useState(false);
   const hasValue = value.length > 0;
 
-  const inputClasses = "w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-2xl outline-none transition-all duration-300 focus:border-transparent";
-  const labelClasses = "absolute left-4 transition-all duration-300 pointer-events-none text-gray-500";
+  const inputClasses = "w-full px-4 py-3 bg-card text-foreground border-2 border-border rounded-2xl outline-none transition-all duration-300 focus:border-transparent";
+  const labelClasses = "absolute left-4 transition-all duration-300 pointer-events-none text-muted-foreground";
 
-  const labelPosition = isFocused || hasValue 
-    ? "top-[-10px] text-xs bg-white px-2" 
+  const labelPosition = isFocused || hasValue
+    ? "top-[-10px] text-xs bg-card px-2 text-primary"
     : "top-3 text-base";
 
   return (
@@ -51,8 +51,8 @@ export function Input({
             rows={rows}
             className={`${inputClasses} resize-none`}
             style={{
-              boxShadow: isFocused 
-                ? '0 0 0 3px rgba(37, 99, 235, 0.1), 0 0 20px rgba(124, 58, 237, 0.15)' 
+              boxShadow: isFocused
+                ? '0 0 0 3px var(--spider-glow), 0 0 20px var(--spider-glow)'
                 : 'none'
             }}
           />
@@ -67,15 +67,15 @@ export function Input({
             required={required}
             className={inputClasses}
             style={{
-              boxShadow: isFocused 
-                ? '0 0 0 3px rgba(37, 99, 235, 0.1), 0 0 20px rgba(124, 58, 237, 0.15)' 
+              boxShadow: isFocused
+                ? '0 0 0 3px var(--spider-glow), 0 0 20px var(--spider-glow)'
                 : 'none'
             }}
           />
         )}
         <label className={`${labelClasses} ${labelPosition}`}>
           {label}
-          {required && <span className="text-[#FF6B6B] ml-1">*</span>}
+          {required && <span className="text-primary ml-1">*</span>}
         </label>
       </div>
     </motion.div>

@@ -8,9 +8,9 @@ interface GradientTextProps {
 
 const GradientTextComponent = ({ children, className = '', variant = 'blue-violet' }: GradientTextProps) => {
   const gradients = {
-    'blue-violet': 'bg-gradient-to-r from-[#2563EB] to-[#7C3AED]',
-    'emerald-teal': 'bg-gradient-to-r from-[#059669] to-[#06B6D4]',
-    'rainbow': 'bg-gradient-to-r from-[#2563EB] via-[#7C3AED] to-[#059669]'
+    'blue-violet': 'bg-gradient-to-r from-primary to-primary-dark',
+    'emerald-teal': 'bg-gradient-to-r from-accent to-primary',
+    'rainbow': 'bg-gradient-to-r from-primary via-gold to-accent'
   };
 
   return (

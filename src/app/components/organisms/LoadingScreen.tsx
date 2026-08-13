@@ -1,98 +1,69 @@
 import { motion } from 'motion/react';
 
-interface LoadingScreenProps {
-  onComplete: () => void;
-}
-
-export function LoadingScreen({ onComplete }: LoadingScreenProps) {
+export function LoadingScreen() {
   return (
     <motion.div
-      className="fixed inset-0 bg-gradient-to-br from-[#F8F9FB] to-white z-50 flex items-center justify-center"
+      className="fixed inset-0 bg-background z-[100] flex items-center justify-center overflow-hidden"
       initial={{ opacity: 1 }}
-      animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onAnimationComplete={onComplete}
-      transition={{ duration: 0.5, delay: 2.5 }}
+      transition={{ duration: 0.4, ease: 'easeInOut' }}
     >
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-[#2563EB]/20 to-[#7C3AED]/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -100, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-[#059669]/20 to-[#06B6D4]/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 100, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        />
+      {/* Web-line sweep */}
+      <div className="absolute inset-0 overflow-hidden motion-reduce:hidden">
+        <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-primary/10 to-transparent animate-scan-line" />
       </div>
+      <div
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            'linear-gradient(var(--web-line) 1px, transparent 1px), linear-gradient(90deg, var(--web-line) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+        aria-hidden="true"
+      />
 
-      {/* Content */}
-      <div className="relative z-10 text-center">
-       {/* Logo Animation */}
-<motion.div
-  initial={{ scale: 0, rotate: -180 }}
-  animate={{ scale: 1, rotate: 0 }}
-  transition={{ duration: 0.8, ease: "easeOut" }}
-  className="mb-8 mt-16 flex justify-center"  
->
-  <img
-    src="/images/Rajakarungan1.png"   
-    alt="Logo"
-      className="w-40 h-40 rounded-full object-cover shadow-2xl border-4 border-violet-500"
-  />
-</motion.div>
+      <div className="relative z-10 text-center px-6">
+        <motion.div
+          initial={{ scale: 0, rotate: -180 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="mb-8 flex justify-center"
+        >
+          <div className="relative">
+            <div className="absolute inset-0 rounded-full bg-primary/30 blur-2xl animate-pulse-glow motion-reduce:hidden" />
+            <img
+              src="/images/Rajakarungan1.png"
+              alt="Logo"
+              className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover shadow-2xl border-4 border-primary/70"
+            />
+          </div>
+        </motion.div>
 
-        {/* Text Animation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
         >
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h2 className="text-xl sm:text-2xl font-display font-semibold text-foreground mb-2">
             Rajakarungan J
           </h2>
-          <p className="text-gray-600">Fullstack Developer</p>
+          <p className="text-muted-foreground text-sm tracking-[0.2em] uppercase">
+            Full-Stack Developer
+          </p>
         </motion.div>
 
-        {/* Loading Bar */}
         <motion.div
-          className="mt-12 w-64 h-1 bg-gray-200 rounded-full overflow-hidden mx-auto"
+          className="mt-10 w-56 h-1 bg-secondary rounded-full overflow-hidden mx-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
+          transition={{ delay: 0.5 }}
         >
           <motion.div
-            className="h-full bg-gradient-to-r from-[#2563EB] via-[#7C3AED] to-[#059669]"
+            className="h-full bg-gradient-to-r from-primary to-gold"
             initial={{ width: 0 }}
             animate={{ width: '100%' }}
-            transition={{ duration: 2, delay: 1, ease: "easeInOut" }}
+            transition={{ duration: 0.9, delay: 0.5, ease: 'easeInOut' }}
           />
-        </motion.div>
-
-        {/* Percentage Counter */}
-        <motion.div
-          className="mt-4 text-sm font-medium text-gray-500"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-        >
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 1, 1, 0] }}
-            transition={{ duration: 2, delay: 1, times: [0, 0.1, 0.9, 1] }}
-          >
-            Loading...
-          </motion.span>
         </motion.div>
       </div>
     </motion.div>

@@ -1,6 +1,9 @@
-import React from 'react';
 import { ScrollProgress } from '../atoms/ScrollProgress';
 import { BackToTop } from '../atoms/BackToTop';
+import { AmbientGlow } from '../atoms/AmbientGlow';
+import { SpiderWebBackground } from '../atoms/SpiderWebBackground';
+import { GrainOverlay } from '../atoms/GrainOverlay';
+import { Vignette } from '../atoms/Vignette';
 import { Navigation } from '../organisms/Navigation';
 import { Hero } from '../organisms/Hero';
 import { About } from '../organisms/About';
@@ -13,11 +16,15 @@ import { Footer } from '../organisms/Footer';
 
 export function PortfolioTemplate() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative bg-background text-foreground">
+      <AmbientGlow />
+      <SpiderWebBackground />
+      <GrainOverlay />
+      <Vignette />
       <ScrollProgress />
       <BackToTop />
       <Navigation />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <About />
         <Skills />

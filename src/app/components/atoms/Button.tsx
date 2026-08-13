@@ -19,12 +19,12 @@ const ButtonComponent = ({
   type = 'button',
   disabled = false
 }: ButtonProps) => {
-  const baseStyles = "rounded-full font-medium transition-all duration-300 inline-flex items-center justify-center";
-  
+  const baseStyles = "rounded-full font-medium transition-all duration-300 inline-flex items-center justify-center focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2";
+
   const variants = {
-    primary: "bg-gradient-to-r from-[#2563EB] to-[#7C3AED] text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-98",
-    secondary: "bg-white text-[#2563EB] shadow-md hover:shadow-lg border border-gray-200 hover:scale-105 active:scale-98",
-    outline: "border-2 border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB]/5 hover:scale-105 active:scale-98"
+    primary: "bg-gradient-to-r from-primary to-primary-dark text-primary-foreground shadow-lg hover:shadow-glow hover:scale-105 hover:brightness-110 active:scale-98",
+    secondary: "bg-card text-primary shadow-md hover:shadow-lg hover:border-primary/40 border border-border hover:scale-105 active:scale-98",
+    outline: "border-2 border-primary text-primary hover:bg-primary/10 hover:scale-105 active:scale-98"
   };
   
   const sizes = {

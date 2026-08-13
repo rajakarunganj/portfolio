@@ -9,32 +9,34 @@ interface ProfileImageProps {
 const ProfileImageComponent = ({ src, alt = "Profile" }: ProfileImageProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
+      initial={{ opacity: 0, scale: 0.85 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.6, delay: 0.3 }}
-      className="relative"
+      transition={{ duration: 0.7, delay: 0.3 }}
+      className="relative w-fit mx-auto"
     >
-      {/* Glow Effect - Static */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB] via-[#7C3AED] to-[#059669] rounded-full blur-2xl opacity-20" />
-      
-      {/* Image Container */}
+      {/* Layered Glow */}
+      <div className="absolute -inset-6 bg-gradient-to-br from-primary via-primary-dark to-accent rounded-full blur-3xl opacity-30" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-gold via-transparent to-primary rounded-full blur-2xl opacity-20" />
+
+      {/* Slow-rotating rings */}
       <div
-        className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl hover:scale-105 transition-transform duration-300"
-      >
-        <img
-          src={src}
-          alt={alt}
-          className="w-full h-full object-cover"
-        />
-        
-        {/* Gradient Overlay on Hover */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#2563EB]/0 to-[#7C3AED]/0 hover:from-[#2563EB]/20 hover:to-[#7C3AED]/20 transition-all duration-300" />
+        className="absolute -inset-4 sm:-inset-5 rounded-full border border-dashed border-primary/35 animate-spin motion-reduce:hidden"
+        style={{ animationDuration: '24s' }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -inset-7 sm:-inset-9 rounded-full border border-dotted border-gold/25 animate-spin motion-reduce:hidden"
+        style={{ animationDuration: '38s', animationDirection: 'reverse' }}
+        aria-hidden="true"
+      />
+
+      {/* Image Container */}
+      <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-card shadow-2xl hover:scale-105 transition-transform duration-300 group">
+        <img src={src} alt={alt} className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-accent/0 group-hover:from-primary/15 group-hover:to-accent/15 transition-all duration-300" />
       </div>
 
-      {/* Floating Ring - Removed infinite animation for better performance */}
-      <div
-        className="absolute inset-0 rounded-full border-2 border-[#2563EB]/20"
-      />
+      <div className="absolute inset-0 rounded-full border-2 border-primary/25" />
     </motion.div>
   );
 };

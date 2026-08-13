@@ -17,8 +17,12 @@ const ScrollProgressComponent = () => {
 
   return (
     <div
-      className="fixed top-0 left-0 h-1 bg-gradient-to-r from-[#2563EB] via-[#7C3AED] to-[#059669] z-50 transition-all duration-200"
-      style={{ width: `${scrollProgress}%` }}
+      className="fixed top-0 left-0 h-1 z-50 transition-all duration-200"
+      style={{
+        width: `${scrollProgress}%`,
+        background: 'linear-gradient(90deg, var(--primary), var(--gold))',
+        boxShadow: '0 0 12px var(--spider-glow)',
+      }}
     />
   );
 };

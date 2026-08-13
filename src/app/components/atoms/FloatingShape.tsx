@@ -11,13 +11,15 @@ interface FloatingShapeProps {
   duration?: number;
 }
 
-const FloatingShapeComponent = ({ 
-  color, 
-  size, 
-  top, 
-  left, 
-  right, 
-  bottom
+const FloatingShapeComponent = ({
+  color,
+  size,
+  top,
+  left,
+  right,
+  bottom,
+  delay = 0,
+  duration = 6,
 }: FloatingShapeProps) => {
   const position: React.CSSProperties = {
     top,
@@ -26,15 +28,16 @@ const FloatingShapeComponent = ({
     bottom,
   };
 
-  // Static gradient shapes for better performance - no animation
   return (
     <div
-      className="absolute rounded-full opacity-20 blur-3xl pointer-events-none"
+      className="absolute rounded-full opacity-20 blur-3xl pointer-events-none animate-float motion-reduce:animate-none"
       style={{
         ...position,
         width: size,
         height: size,
         background: color,
+        animationDelay: `${delay}s`,
+        animationDuration: `${duration}s`,
       }}
     />
   );
