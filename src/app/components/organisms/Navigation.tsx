@@ -130,7 +130,7 @@ export function Navigation() {
                 {isActive(item.href) && (
                   <motion.span
                     layoutId="nav-active-pill"
-                    className="absolute inset-0 rounded-full bg-primary -z-10"
+                    className="absolute inset-0 rounded-full bg-primary shadow-glow -z-10"
                     transition={{ type: "spring", stiffness: 400, damping: 32 }}
                   />
                 )}

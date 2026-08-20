@@ -8,6 +8,7 @@ import { Button } from "../atoms/Button";
 import { toast } from "react-toastify";
 import { sendContact } from "../../common/env.common";
 import { useParallax } from "../../hooks/useParallax";
+import { SceneFrame } from "../molecules/SceneFrame";
 
 type Status = "idle" | "loading" | "success";
 
@@ -64,10 +65,10 @@ export function Contact() {
   };
 
   return (
-    <section
-      ref={parallax.ref}
+    <SceneFrame
       id="contact"
-      className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 bg-secondary/30 relative overflow-hidden"
+      sectionRef={parallax.ref}
+      className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 bg-secondary/30 overflow-hidden"
     >
       {/* Background Elements */}
       <motion.div className="absolute inset-0" style={{ y: parallax.y }} aria-hidden="true">
@@ -84,7 +85,7 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16"
         >
-          <HudLabel index="07" align="center" className="mb-4">
+          <HudLabel index="SC.07" align="center" className="mb-4">
             Get In Touch
           </HudLabel>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
@@ -268,6 +269,6 @@ export function Contact() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </SceneFrame>
   );
 }

@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { GradientText } from '../atoms/GradientText';
 import { HudLabel } from '../atoms/HudLabel';
+import { SceneFrame } from '../molecules/SceneFrame';
 import { Award, Coffee, Zap } from 'lucide-react';
 import { useCountUp } from '../../hooks/useCountUp';
 
@@ -43,11 +44,7 @@ function StatCard({
 
 export function About() {
   return (
-    <section id="about" className="py-24 px-6 bg-secondary/30 relative overflow-hidden">
-      {/* Background Decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-
+    <SceneFrame id="about" className="py-24 px-6 bg-secondary/30 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -57,7 +54,7 @@ export function About() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <HudLabel index="02" align="center" className="mb-4">
+          <HudLabel index="SC.02" align="center" className="mb-4">
             Profile
           </HudLabel>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -128,6 +125,6 @@ export function About() {
           ))}
         </div>
       </div>
-    </section>
+    </SceneFrame>
   );
 }

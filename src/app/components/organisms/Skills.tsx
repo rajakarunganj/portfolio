@@ -7,6 +7,8 @@ import {
 } from 'lucide-react';
 import { GradientText } from '../atoms/GradientText';
 import { HudLabel } from '../atoms/HudLabel';
+import { SceneFrame } from '../molecules/SceneFrame';
+import { useTilt } from '../../hooks/useTilt';
 
 interface Category {
   id: string;
@@ -72,13 +74,40 @@ const tools: Tool[] = [
 
 const categoryColor = (id: string) => categories.find((c) => c.id === id)?.color ?? 'var(--primary)';
 
+function ToolTile({ tool, delay }: { tool: Tool; delay: number }) {
+  const tilt = useTilt(10);
+
+  return (
+    <motion.div
+      ref={tilt.ref}
+      onPointerMove={tilt.onPointerMove}
+      onPointerLeave={tilt.onPointerLeave}
+      initial={{ opacity: 0, scale: 0.85 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.3, delay }}
+      style={{ ...tilt.style, transformStyle: 'preserve-3d' }}
+      className="group relative flex flex-col items-center text-center gap-2 rounded-2xl border border-border p-4 hover:border-primary/30 hover:shadow-glow transition-colors overflow-hidden"
+    >
+      <div
+        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={tilt.glareStyle}
+        aria-hidden="true"
+      />
+      <div
+        className="relative w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+        style={{ background: `color-mix(in srgb, ${categoryColor(tool.category)} 15%, transparent)` }}
+      >
+        <tool.icon className="w-5 h-5" style={{ color: categoryColor(tool.category) }} />
+      </div>
+      <span className="relative text-xs font-medium text-foreground">{tool.name}</span>
+    </motion.div>
+  );
+}
+
 export function Skills() {
   return (
-    <section id="skills" className="py-24 px-6 bg-background relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-
+    <SceneFrame id="skills" className="py-24 px-6 bg-background overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -88,7 +117,7 @@ export function Skills() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <HudLabel index="03" align="center" className="mb-4">
+          <HudLabel index="SC.03" align="center" className="mb-4">
             Capabilities
           </HudLabel>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -177,28 +206,12 @@ export function Skills() {
             <h3 className="text-xl font-display font-semibold text-foreground mb-6">Technical Skills</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {tools.map((tool, i) => (
-                <motion.div
-                  key={tool.name}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: i * 0.03 }}
-                  whileHover={{ y: -4 }}
-                  className="group flex flex-col items-center text-center gap-2 rounded-2xl border border-border p-4 hover:border-primary/30 hover:shadow-md transition-all"
-                >
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                    style={{ background: `color-mix(in srgb, ${categoryColor(tool.category)} 15%, transparent)` }}
-                  >
-                    <tool.icon className="w-5 h-5" style={{ color: categoryColor(tool.category) }} />
-                  </div>
-                  <span className="text-xs font-medium text-foreground">{tool.name}</span>
-                </motion.div>
+                <ToolTile key={tool.name} tool={tool} delay={i * 0.03} />
               ))}
             </div>
           </motion.div>
         </div>
       </div>
-    </section>
+    </SceneFrame>
   );
 }

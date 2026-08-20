@@ -1,9 +1,15 @@
 import { ScrollProgress } from '../atoms/ScrollProgress';
 import { BackToTop } from '../atoms/BackToTop';
 import { AmbientGlow } from '../atoms/AmbientGlow';
+import { CinematicLight } from '../atoms/CinematicLight';
 import { SpiderWebBackground } from '../atoms/SpiderWebBackground';
+import { SpiderCrawler } from '../atoms/SpiderCrawler';
+import { EmberField } from '../atoms/EmberField';
 import { GrainOverlay } from '../atoms/GrainOverlay';
 import { Vignette } from '../atoms/Vignette';
+import { Letterbox, LetterboxBottom } from '../atoms/Letterbox';
+import { FrameBrackets } from '../atoms/FrameBrackets';
+import { WebCursor } from '../atoms/WebCursor';
 import { Navigation } from '../organisms/Navigation';
 import { Hero } from '../organisms/Hero';
 import { About } from '../organisms/About';
@@ -17,10 +23,17 @@ import { Footer } from '../organisms/Footer';
 export function PortfolioTemplate() {
   return (
     <div className="min-h-screen relative bg-background text-foreground">
+      <CinematicLight />
       <AmbientGlow />
       <SpiderWebBackground />
+      <SpiderCrawler />
+      <EmberField />
       <GrainOverlay />
       <Vignette />
+      <Letterbox />
+      <LetterboxBottom />
+      <FrameBrackets />
+      <WebCursor />
       <ScrollProgress />
       <BackToTop />
       <Navigation />

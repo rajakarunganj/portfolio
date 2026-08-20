@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { FileText, Eye } from 'lucide-react';
 import { GradientText } from '../atoms/GradientText';
 import { HudLabel } from '../atoms/HudLabel';
+import { SceneFrame } from '../molecules/SceneFrame';
 
 interface Certificate {
   id: number;
@@ -49,10 +50,7 @@ export function Certificates() {
   };
 
   return (
-    <section id="certificates" className="py-24 px-6 bg-secondary/30 relative overflow-hidden">
-      <div className="absolute top-0 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-
+    <SceneFrame id="certificates" className="py-24 px-6 bg-secondary/30 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -61,7 +59,7 @@ export function Certificates() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <HudLabel index="06" align="center" className="mb-4">
+          <HudLabel index="SC.06" align="center" className="mb-4">
             Credentials
           </HudLabel>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -131,6 +129,6 @@ export function Certificates() {
           })}
         </div>
       </div>
-    </section>
+    </SceneFrame>
   );
 }

@@ -45,6 +45,32 @@ export function Hero() {
       {/* Cinematic background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-secondary/40" />
 
+      {/* Opening light-sweep wipe */}
+      <motion.div
+        initial={{ opacity: 0.9, x: '-120%' }}
+        animate={{ opacity: 0, x: '120%' }}
+        transition={{ duration: 1.1, ease: 'easeInOut', delay: 0.15 }}
+        className="absolute inset-0 z-20 pointer-events-none motion-reduce:hidden"
+        style={{
+          background:
+            'linear-gradient(100deg, transparent 40%, var(--primary) 48%, var(--foreground) 50%, var(--accent) 52%, transparent 60%)',
+          mixBlendMode: 'screen',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Scene tag */}
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.9 }}
+        className="absolute top-20 sm:top-24 right-4 sm:right-8 z-20 hidden sm:flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-hud-text"
+        aria-hidden="true"
+      >
+        <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse-glow motion-reduce:hidden" />
+        Scene 01 — Open
+      </motion.div>
+
       <motion.div className="absolute inset-0" style={{ y: parallax.y }} aria-hidden="true">
         <FloatingShape
           color="linear-gradient(135deg, var(--primary), var(--primary-dark))"
@@ -86,7 +112,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex md:justify-start justify-center mb-5"
           >
-            <HudLabel index="01">Welcome</HudLabel>
+            <HudLabel index="SC.01">Welcome</HudLabel>
           </motion.div>
 
           <h1
@@ -222,7 +248,7 @@ export function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-hud-text motion-reduce:hidden"
         aria-hidden="true"
       >
-        <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
+        <span className="text-[10px] tracking-[0.3em] uppercase">Reel 01 ▸ Scroll to Begin</span>
         <span className="w-px h-8 bg-gradient-to-b from-primary to-transparent" />
       </motion.div>
     </section>

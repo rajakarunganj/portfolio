@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { GradientText } from "../atoms/GradientText";
 import { HudLabel } from "../atoms/HudLabel";
 import { TimelineItem } from "../molecules/TimelineItem";
+import { SceneFrame } from "../molecules/SceneFrame";
 
 interface TimelineEntry {
   year: string;
@@ -71,14 +72,7 @@ function TimelineTrack({ items }: { items: TimelineEntry[] }) {
 
 export function Experience() {
   return (
-    <section
-      id="experience"
-      className="py-24 px-6 bg-background relative overflow-hidden"
-    >
-      {/* Background Elements */}
-      <div className="absolute top-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-
+    <SceneFrame id="experience" className="py-24 px-6 bg-background overflow-hidden">
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -88,7 +82,7 @@ export function Experience() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <HudLabel index="05" align="center" className="mb-4">
+          <HudLabel index="SC.05" align="center" className="mb-4">
             Career Path
           </HudLabel>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -110,6 +104,6 @@ export function Experience() {
           <TimelineTrack items={education} />
         </div>
       </div>
-    </section>
+    </SceneFrame>
   );
 }

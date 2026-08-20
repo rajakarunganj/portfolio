@@ -13,12 +13,12 @@ interface Orb {
   blur: number;
 }
 
+// Kept subtle — CinematicLight now carries the primary red/blue key light,
+// this layer just adds gold/accent texture drift underneath it.
 const orbs: Orb[] = [
-  { color: 'var(--primary)', size: '48vw', top: '-15%', left: '-10%', duration: '26s', delay: '0s', opacity: 0.2, blur: 110 },
-  { color: 'var(--gold)', size: '36vw', top: '30%', right: '-12%', duration: '32s', delay: '-8s', opacity: 0.16, blur: 100 },
-  { color: 'var(--accent)', size: '40vw', bottom: '-18%', left: '15%', duration: '28s', delay: '-15s', opacity: 0.18, blur: 120 },
-  { color: 'var(--primary-dark)', size: '30vw', bottom: '5%', right: '20%', duration: '24s', delay: '-4s', opacity: 0.16, blur: 90 },
-  { color: 'var(--primary)', size: '22vw', top: '48%', left: '42%', duration: '20s', delay: '-11s', opacity: 0.1, blur: 80 },
+  { color: 'var(--gold)', size: '36vw', top: '30%', right: '-12%', duration: '32s', delay: '-8s', opacity: 0.09, blur: 100 },
+  { color: 'var(--accent)', size: '40vw', bottom: '-18%', left: '15%', duration: '28s', delay: '-15s', opacity: 0.1, blur: 120 },
+  { color: 'var(--primary)', size: '22vw', top: '48%', left: '42%', duration: '20s', delay: '-11s', opacity: 0.06, blur: 80 },
 ];
 
 /**

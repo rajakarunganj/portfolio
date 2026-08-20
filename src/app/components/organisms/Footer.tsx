@@ -53,6 +53,16 @@ export function Footer() {
       </svg>
 
       <div className="relative z-10 max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-2 text-[10px] tracking-[0.35em] uppercase text-white/40 mb-10"
+        >
+          <span className="w-6 h-px bg-primary/60" aria-hidden="true" />
+          End Credits
+        </motion.div>
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand Section */}
           <motion.div

@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { GradientText } from '../atoms/GradientText';
 import { HudLabel } from '../atoms/HudLabel';
 import { ProjectCard } from '../molecules/ProjectCard';
+import { SceneFrame } from '../molecules/SceneFrame';
 
 interface Project {
   title: string;
@@ -96,11 +97,7 @@ const projects: Project[] = [
 
 export function Projects() {
   return (
-    <section id="projects" className="py-24 px-6 bg-secondary/30 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-
+    <SceneFrame id="projects" className="py-24 px-6 bg-secondary/30 overflow-hidden">
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -110,7 +107,7 @@ export function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <HudLabel index="04" align="center" className="mb-4">
+          <HudLabel index="SC.04" align="center" className="mb-4">
             Selected Work
           </HudLabel>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -128,6 +125,6 @@ export function Projects() {
           ))}
         </div>
       </div>
-    </section>
+    </SceneFrame>
   );
 }
