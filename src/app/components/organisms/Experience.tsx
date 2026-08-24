@@ -1,47 +1,12 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { GradientText } from "../atoms/GradientText";
 import { HudLabel } from "../atoms/HudLabel";
 import { TimelineItem } from "../molecules/TimelineItem";
 import { SceneFrame } from "../molecules/SceneFrame";
+import { getEducation, getExperience, TimelineEntryDto } from "../../common/env.common";
 
-interface TimelineEntry {
-  year: string;
-  title: string;
-  company: string;
-  description: string;
-  color: string;
-}
-
-const experiences: TimelineEntry[] = [
-  {
-    year: "2024 - Present",
-    title: "Junior Full-Stack Developer",
-    company: "My Soaring",
-    description:
-      "We are a product-based software company passionate about building digital platforms that empower organizations. Our solutions simplify complex workflows, automate processes, and unlock new opportunities for growth.",
-    color: "var(--primary)",
-  },
-];
-
-const education: TimelineEntry[] = [
-  {
-    year: "2019 - 2020",
-    title: "Higher Secondary",
-    company: "Rc Hr Sec School",
-    description: "Computer Science • Percentage: 70/100",
-    color: "var(--gold)",
-  },
-  {
-    year: "2020 - 2024",
-    title: "Bachelor Of Engineering",
-    company: "Gnanamani College of Technology",
-    description: "Computer Science And Engineering • GPA: 7.73/10",
-    color: "var(--accent)",
-  },
-];
-
-function TimelineTrack({ items }: { items: TimelineEntry[] }) {
+function TimelineTrack({ items }: { items: TimelineEntryDto[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: trackRef,
@@ -64,13 +29,25 @@ function TimelineTrack({ items }: { items: TimelineEntry[] }) {
         aria-hidden="true"
       />
       {items.map((item, index) => (
-        <TimelineItem key={index} {...item} delay={index * 0.15} />
+        <TimelineItem key={item.id} {...item} delay={index * 0.15} />
       ))}
     </div>
   );
 }
 
 export function Experience() {
+  const [experiences, setExperiences] = useState<TimelineEntryDto[]>([]);
+  const [education, setEducation] = useState<TimelineEntryDto[]>([]);
+
+  useEffect(() => {
+    getExperience()
+      .then(setExperiences)
+      .catch((error) => console.error('Failed to load experience', error));
+    getEducation()
+      .then(setEducation)
+      .catch((error) => console.error('Failed to load education', error));
+  }, []);
+
   return (
     <SceneFrame id="experience" className="py-24 px-6 bg-background overflow-hidden">
       <div className="relative z-10 max-w-5xl mx-auto">

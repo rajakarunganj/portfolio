@@ -1,40 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Mail, MapPin, Phone, Send, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, Phone, Send, CheckCircle2, LucideIcon } from "lucide-react";
 import { GradientText } from "../atoms/GradientText";
 import { HudLabel } from "../atoms/HudLabel";
 import { Input } from "../atoms/Input";
 import { Button } from "../atoms/Button";
 import { toast } from "react-toastify";
-import { sendContact } from "../../common/env.common";
+import { sendContact, getContactDetails, ContactDetailDto } from "../../common/env.common";
 import { useParallax } from "../../hooks/useParallax";
 import { SceneFrame } from "../molecules/SceneFrame";
 
 type Status = "idle" | "loading" | "success";
 
-const contactInfo = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "rajakarunganj@gmail.com",
-    href: "mailto:rajakarunganj@gmail.com",
-    colorVar: "var(--primary)",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+91 8220782385",
-    href: "tel:+918220782385",
-    colorVar: "var(--accent)",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "Chennai, Tamil Nadu, India",
-    href: undefined,
-    colorVar: "var(--gold)",
-  },
-];
+const CONTACT_ICONS: Record<ContactDetailDto["icon"], LucideIcon> = {
+  mail: Mail,
+  phone: Phone,
+  "map-pin": MapPin,
+};
 
 export function Contact() {
   const parallax = useParallax<HTMLElement>(50);
@@ -46,6 +28,13 @@ export function Contact() {
   });
 
   const [status, setStatus] = useState<Status>("idle");
+  const [contactInfo, setContactInfo] = useState<ContactDetailDto[]>([]);
+
+  useEffect(() => {
+    getContactDetails()
+      .then(setContactInfo)
+      .catch((error) => console.error('Failed to load contact details', error));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,9 +105,11 @@ export function Contact() {
             </p>
 
             <div className="space-y-4 sm:space-y-6">
-              {contactInfo.map((info, index) => (
+              {contactInfo.map((info, index) => {
+                const Icon = CONTACT_ICONS[info.icon];
+                return (
                 <motion.a
-                  key={index}
+                  key={info.id}
                   href={info.href}
                   className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-card border border-border rounded-2xl shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 group"
                   initial={{ opacity: 0, x: -20 }}
@@ -131,7 +122,7 @@ export function Contact() {
                     className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"
                     style={{ backgroundColor: `color-mix(in srgb, ${info.colorVar} 15%, transparent)` }}
                   >
-                    <info.icon
+                    <Icon
                       className="w-4 h-4 sm:w-5 sm:h-5"
                       style={{ color: info.colorVar }}
                     />
@@ -145,7 +136,8 @@ export function Contact() {
                     </p>
                   </div>
                 </motion.a>
-              ))}
+                );
+              })}
             </div>
 
             {/* Availability */}
