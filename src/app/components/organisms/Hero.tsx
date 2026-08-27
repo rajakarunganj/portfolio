@@ -175,8 +175,8 @@ export function Hero() {
               size="lg"
               onClick={() => {
                 const link = document.createElement("a");
-                link.href = "/images/Rajakarungan_jeyaraj.pdf";
-                link.download = "Rajakarungan_jeyaraj_resume.pdf";
+                link.href = "/images/Rajakarungan_J_Software_Engineer.pdf";
+                link.download = "Rajakarungan_J_Software_Engineer.pdf";
                 link.click();
               }}
             >
