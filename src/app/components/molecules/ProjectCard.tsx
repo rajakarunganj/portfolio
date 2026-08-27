@@ -26,7 +26,6 @@ const ProjectCardComponent = ({
   reverse = false,
 }: ProjectCardProps) => {
   const tilt = useTilt(4);
-  const number = String(index).padStart(2, '0');
 
   return (
     <motion.div
@@ -61,10 +60,6 @@ const ProjectCardComponent = ({
 
       {/* Content */}
       <div className="md:w-1/2 w-full">
-        <span className="flex items-center gap-2 font-display font-semibold text-xs tracking-[0.3em] text-primary/60 uppercase mb-3 select-none">
-          <span className="w-4 h-px bg-primary/40" aria-hidden="true" />
-          Shot {number}
-        </span>
         <h3 className="text-2xl sm:text-3xl font-display font-semibold text-foreground mb-4">
           {title}
         </h3>

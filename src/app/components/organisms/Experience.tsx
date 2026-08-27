@@ -59,7 +59,7 @@ export function Experience() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <HudLabel index="SC.05" align="center" className="mb-4">
+          <HudLabel  align="center" className="mb-4">
             Career Path
           </HudLabel>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">

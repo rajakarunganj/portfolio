@@ -26,7 +26,7 @@ export function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <HudLabel index="SC.04" align="center" className="mb-4">
+          <HudLabel  align="center" className="mb-4">
             Selected Work
           </HudLabel>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">

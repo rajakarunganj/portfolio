@@ -20,9 +20,6 @@ export const Letterbox = memo(function Letterbox() {
           <span className="absolute inset-0 rounded-full bg-primary animate-pulse-glow motion-reduce:hidden" />
           <span className="relative w-1 h-1 rounded-full bg-primary" />
         </span>
-        <span className="text-[8px] tracking-[0.3em] text-white/35 uppercase font-display">
-          Rec
-        </span>
       </div>
     </div>
   );

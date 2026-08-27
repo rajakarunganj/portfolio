@@ -112,7 +112,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex md:justify-start justify-center mb-5"
           >
-            <HudLabel index="SC.01">Welcome</HudLabel>
+            <HudLabel >Welcome</HudLabel>
           </motion.div>
 
           <h1
