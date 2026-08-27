@@ -60,8 +60,6 @@ export function Footer() {
           transition={{ duration: 0.5 }}
           className="flex items-center gap-2 text-[10px] tracking-[0.35em] uppercase text-white/40 mb-10"
         >
-          <span className="w-6 h-px bg-primary/60" aria-hidden="true" />
-          End Credits
         </motion.div>
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand Section */}
